@@ -1,5 +1,5 @@
 - name: Play1  
-  hosts: all 
+  hosts: webserver
   tasks:
     - name: Printing Hello From Play1
       ansible.builtin.debug:
