@@ -1,5 +1,16 @@
 - name: Creating EC2
   hosts: localhost
+  tasks:
+    - name: Install boto3 and botocore with pip3 module
+        pip:
+          name: 
+          - boto3
+          - botocore
+          executable: pip-3.7
+
+          
+- name: Creating EC2
+  hosts: localhost
   gather_facts: False
   vars:
     instance_type: "t3.micro"
@@ -19,14 +30,6 @@
           Name: ansible-dryrun
       register: ec2
 
-- name: Creating EC2
-  hosts: localhost
-  tasks:
-    - name: Install boto3 and botocore with pip3 module
-        pip:
-          name: 
-          - boto3
-          - botocore
-          executable: pip-3.7
+
 
 
