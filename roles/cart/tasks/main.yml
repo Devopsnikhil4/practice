@@ -1,5 +1,5 @@
 - name: Creating EC2 for DryRun
-  hosts: localhost
+  hosts: cart
   gather_facts: False
   vars:
     instance_type: "t3.micro"
