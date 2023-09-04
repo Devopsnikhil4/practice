@@ -1,3 +1,20 @@
-- name: Printing Hello From Play1
-  ansible.builtin.debug:
-  msg: Hello from play1 of task1 
+- name: Creating EC2
+  hosts: localhost
+  gather_facts: False
+  vars:
+    instance_type: "t3.micro"
+    security_group_id: "sg-0e7cff5842c1eaa04"  # Update as per your security group id
+    image: "ami-0ab6c5f660d7747ae"             # Update this with the AMI ID in your account which has ansible installed.
+    region: "us-east-1"
+  tasks:
+    - name: Launching instance
+      amazon.aws.ec2:
+         count: 1
+         group_id: "{{ security_group_id }}"
+         instance_type: "{{ instance_type }}"
+         image: "{{ image }}"
+         wait: true
+         region: "{{ region }}"
+         instance_tags:
+          Name: ansible-dryrun
+      register: ec2
